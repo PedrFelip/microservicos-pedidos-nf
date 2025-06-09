@@ -1,6 +1,5 @@
 FROM node:lts-alpine as base
-
-
+#---
 # Install dependencies
 
 FROM base as dependencies
@@ -12,6 +11,8 @@ COPY package*.json ./
 RUN npm install --omit=dev
 
 # Build the application
+
+#---
 
 FROM base as runner
 
