@@ -1,8 +1,8 @@
-FROM node:lts-alpine as base
+FROM node:lts-alpine AS base
 #---
 # Install dependencies
 
-FROM base as dependencies
+FROM base AS dependencies
 
 WORKDIR /app
 
@@ -14,14 +14,14 @@ RUN npm install --omit=dev
 
 #---
 
-FROM base as runner
+FROM base AS runner
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 
-RUN addgroup --system --gid 1001 nodejs \
-    && adduser --system --uid 1001 nodejs
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 api
 
 RUN chown api:nodejs .
 
