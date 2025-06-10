@@ -1,6 +1,6 @@
 import { integer, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
-export const statusdopedido = pgEnum(pedido_status, [
+export const statusdopedido = pgEnum("pedido_status", [
   "pendente",
   "pago",
   "cancelado",
