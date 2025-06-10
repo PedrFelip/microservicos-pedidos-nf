@@ -1,3 +1,5 @@
-import const schema = {
+import { pedidos } from "./pedidos";
 
-}
+export const schema = {
+  pedidos,
+};
