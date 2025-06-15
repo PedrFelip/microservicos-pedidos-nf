@@ -7,7 +7,9 @@ import {
     type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 import { pedidosChannel } from '../broker/channels/pedidos.ts'
-import { schema } from '../db/migrations/schema/index.ts'
+import { schema } from '../db/schema/index.ts'
+import { db } from '../db/client.ts'
+import { randomUUID } from 'node:crypto'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -38,6 +40,12 @@ app.post('/pedidos', {
         totaldopedido,
         createdAt: new Date().toISOString(),
     })))
+
+    await db.insert(schema.pedidos).values({
+        id: randomUUID(),
+        
+    })
+
 
     return reply.status(201).send()
 })
