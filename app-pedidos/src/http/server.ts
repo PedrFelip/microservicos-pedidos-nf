@@ -13,6 +13,10 @@ const app = fastify().withTypeProvider<ZodTypeProvider>()
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
 
+app.register(fastifyCors, {
+    origin: '*',
+})
+
 app.get('/health', () => {
     return 'ok'
 })
