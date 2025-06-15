@@ -6,6 +6,7 @@ import {
     validatorCompiler,
     type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
+import { pedidosChannel } from '../broker/channels/pedidos.ts'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -27,6 +28,8 @@ app.post('/pedidos', {
     const { totaldopedido } = request.body
 
     console.log('Pedido recebido:', totaldopedido)
+
+    pedidosChannel.sendToQueue('pedidos', Buffer.from("Pedido recebido: " + totaldopedido))
 
     return reply.status(201).send()
 })
