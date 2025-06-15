@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "node --experimental-strip-types --watch --no-warnings src/http/server.ts",
     "start": "node --experimental-strip-types --no-warnings src/http/server.ts"
