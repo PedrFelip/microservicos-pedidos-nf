@@ -7,3 +7,5 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=pedidos
+    volumes:
+      - .docker:/docker-entrypoint-initdb.d
