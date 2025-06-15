@@ -7,6 +7,7 @@ import {
     type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 import { pedidosChannel } from '../broker/channels/pedidos.ts'
+import { schema } from '../db/migrations/schema/index.ts'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -33,7 +34,10 @@ app.post('/pedidos', {
 
     console.log('Pedido recebido:', totaldopedido)
 
-    pedidosChannel.sendToQueue('pedidos', Buffer.from("Pedido recebido: " + totaldopedido))
+    pedidosChannel.sendToQueue('pedidos', Buffer.from(JSON.stringify({
+        totaldopedido,
+        createdAt: new Date().toISOString(),
+    })))
 
     return reply.status(201).send()
 })
