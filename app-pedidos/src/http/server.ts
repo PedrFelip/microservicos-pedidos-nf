@@ -21,7 +21,7 @@ app.get('/health', () => {
 app.post('/pedidos', {
     schema: {
         body: z.object({
-            totaldopedido: z.number(),
+            totaldopedido: z.coerce.number(),
         })
     }
 }, (request, reply) => {
