@@ -31,7 +31,7 @@ app.post('/pedidos', {
             totaldopedido: z.coerce.number(),
         })
     }
-}, (request, reply) => {
+}, async (request, reply) => {
     const { totaldopedido } = request.body
 
     console.log('Pedido recebido:', totaldopedido)
@@ -43,7 +43,8 @@ app.post('/pedidos', {
 
     await db.insert(schema.pedidos).values({
         id: randomUUID(),
-        
+        clienteId: '12',
+        totaldopedido,
     })
 
 

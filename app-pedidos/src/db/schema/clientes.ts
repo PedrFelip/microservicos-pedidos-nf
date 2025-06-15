@@ -1,4 +1,4 @@
-import { date } from "drizzle-orm/mysql-core";
+import { date } from "drizzle-orm/pg-core";
 import { integer, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const clientes = pgTable('clientes', {
